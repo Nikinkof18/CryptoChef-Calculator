@@ -13,12 +13,8 @@
       <div class="brand-mark">🍳</div>
       <div><strong>ChefCalc</strong><span>Kitchen Strategy Calculator</span></div>
     </div>
-    <nav>
-      <a href="#calculator">Calculator</a>
-      <a href="#withdraw">Withdrawals</a>
-      <a href="#about">FAQ</a>
-    </nav>
-    <button class="lang">🇬🇧 English</button>
+    
+    
   </header>
 
   <main>
@@ -26,42 +22,40 @@
       <div>
         <div class="eyebrow">FREE COMMUNITY CALCULATOR</div>
         <h1>Optimize your kitchen.</h1>
-        <p>Enter your chefs and resources. ChefCalc calculates your production, earnings, next purchases and the smartest move.</p>
+        <p>Enter your chefs and current resources. ChefCalc calculates your production, earnings and the time needed to reach each chef.</p>
       </div>
       <div class="hero-badge"><span>●</span> Live calculations</div>
     </section>
 
     <section id="calculator" class="panel">
       <div class="panel-title">
-        <div><span class="icon">⚙</span><h2>DATA INPUT & SETTINGS</h2></div>
+        <div><span class="icon">⚙</span><h2>MY KITCHEN</h2></div>
         <span class="chevron">⌃</span>
       </div>
 
-      <div class="tabs">
-        <button class="tab active" data-tab="chefs">👨‍🍳 My Chefs</button>
-        <button class="tab" data-tab="resources">💰 Resources</button>
-              </div>
+      <div class="calculator-body">
+        <div class="resource-strip">
+          <label>
+            <span>🪙 SERVICE COINS</span>
+            <input id="scInput" type="number" min="0" step="0.01" value="0">
+          </label>
+          <label>
+            <span>💧 AZURE</span>
+            <input id="azureInput" type="number" min="0" step="0.01" value="0">
+          </label>
+          <div class="reinvest-card">
+            <div>
+              <strong>Reinvest Azure</strong>
+              <small>Convert Azure into Service Coins at +10%.</small>
+            </div>
+            <label class="switch"><input id="convertToggle" type="checkbox" checked><span></span></label>
+          </div>
+        </div>
 
-      <div id="tab-chefs" class="tab-content active">
+        <div class="section-label">YOUR CHEFS</div>
         <div class="chef-grid" id="chefGrid"></div>
       </div>
-
-      <div id="tab-resources" class="tab-content">
-        <div class="option-card" style="margin-top:14px;">
-          <div>
-            <strong>Allow Azure → Service Coin conversion</strong>
-            <small>1 Azure → 1.1 Service Coins (+10%).</small>
-          </div>
-          <label class="switch"><input id="convertToggle" type="checkbox" checked><span></span></label>
-        </div>
-        <div class="resource-grid">
-          <label>Service Coins<input id="scInput" type="number" min="0" step="0.01" value="23.24"></label>
-          <label>Azure<input id="azureInput" type="number" min="0" step="0.01" value="23.24"></label>
-          <label>Stored dishes<input id="dishesInput" type="number" min="0" step="1" value="0"></label>
-        </div>
-      </div>
-
-
+    </section>
 
     <section class="stats-grid">
       <article class="stat main-stat"><span>🍽️</span><div><small>TOTAL PRODUCTION</small><strong id="dishesHour">0</strong><em>dishes / hour</em></div></article>
@@ -72,8 +66,8 @@
 
     <section class="two-col">
       <div class="panel">
-        <div class="panel-title"><div><span class="icon">📈</span><h2>NEXT CHEFS</h2></div></div>
-        <div class="table-wrap"><table><thead><tr><th>Chef</th><th>Cost</th><th>Gain</th><th>Time</th><th>Payback</th></tr></thead><tbody id="nextChefBody"></tbody></table></div>
+        <div class="panel-title"><div><span class="icon">⏱</span><h2>TIME TO BUY A CHEF</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Chef</th><th>Cost</th><th>Gain</th><th>Time</th></tr></thead><tbody id="nextChefBody"></tbody></table></div>
       </div>
 
       <div id="withdraw" class="panel">
@@ -90,8 +84,8 @@
     <section id="about" class="panel faq">
       <div class="panel-title"><div><span class="icon">?</span><h2>HOW THE CALCULATOR WORKS</h2></div></div>
       <details open><summary>How are rewards calculated?</summary><p>Every 1,000 dishes sold gives 5 Service Coins and 5 Azure. 10,000 Azure equals $1.</p></details>
-      <details><summary>How does Azure conversion work?</summary><p>Azure can be converted into Service Coins with a 10% bonus: 1 Azure becomes 1.1 Service Coins.</p></details>
-      <details><summary>What does “Best Action” mean?</summary><p>ChefCalc compares your next chef purchases using cost, production gain and payback time, while respecting your Azure-conversion and withdrawal preference.</p></details>
+      <details><summary>How does Azure reinvestment work?</summary><p>When enabled, Azure is treated as reinvested into Service Coins at a 10% bonus: 1 Azure becomes 1.1 Service Coins. This is used when calculating the time to reach the next chef.</p></details>
+      
     </section>
 
     <footer>ChefCalc is an independent community calculator. Game values can be changed in <code>data.js</code>.</footer>
