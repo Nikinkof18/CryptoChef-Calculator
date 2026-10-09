@@ -5,6 +5,8 @@ const GAME = {
   azurePerReward: 5,
   azureToScBonus: 0.10,
   azurePerDollar: 10000,
+  serviceCoinsPerAd: 25,
+  maxAdsPerDay: 10,
   chefs: [
     { name: "Kitchen Porter", production: 42, cost: 1000, emoji: "🍽️" },
     { name: "Junior Chef", production: 221, cost: 5000, emoji: "🔪" },
