@@ -1,4 +1,4 @@
-// Game configuration. Update values here if the game changes them.
+// Game configuration
 const GAME = {
   rewardDishes: 1000,
   serviceCoinsPerReward: 5,

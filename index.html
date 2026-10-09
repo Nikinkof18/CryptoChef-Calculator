@@ -8,19 +8,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark">🍳</div>
-      <div><strong>ChefCalc</strong><span>Kitchen Strategy Calculator</span></div>
-    </div>
-  </header>
+  <header class="topbar"><div class="brand"><div class="brand-mark">🍳</div><div><strong>ChefCalc</strong><span>Kitchen Strategy Calculator</span></div></div></header>
   <main>
     <section class="hero">
-      <div>
-        <div class="eyebrow">FREE COMMUNITY CALCULATOR</div>
-        <h1>Optimize your kitchen.</h1>
-        <p>Enter your chefs and current resources. ChefCalc calculates your production, earnings and the time needed to reach each chef.</p>
-      </div>
+      <div><div class="eyebrow">FREE COMMUNITY CALCULATOR</div><h1>Optimize your kitchen.</h1><p>Enter your chefs and current resources. ChefCalc calculates your production, earnings and the time needed to reach each chef.</p></div>
       <div class="hero-badge"><span>●</span> Live calculations</div>
     </section>
     <section id="calculator" class="panel">
@@ -31,26 +22,16 @@
           <label><span>💧 AZURE</span><input id="azureInput" type="number" min="0" step="0.01" value="0"></label>
           <div class="reinvest-card"><div><strong>Reinvest Azure</strong><small>Convert Azure into Service Coins at +10%.</small></div><label class="switch"><input id="convertToggle" type="checkbox" checked><span></span></label></div>
         </div>
-
         <div class="ads-card">
-          <div class="ads-heading">
-            <div><strong>📺 Daily ad rewards</strong><small>Earn 25 Service Coins instantly for each ad watched (maximum 10 per day).</small></div>
-            <label class="switch"><input id="adsToggle" type="checkbox"><span></span></label>
-          </div>
-          <div class="ads-controls">
-            <label for="adsPerDay">Ads watched per day: <strong id="adsPerDayValue">10</strong>/10</label>
-            <input id="adsPerDay" type="range" min="0" max="10" step="1" value="10">
-            <div class="ads-summary">
-              <div><small>DAILY AD BONUS</small><strong id="adsBonusDay">0</strong><em>SC / day</em></div>
-              <div><small>AVERAGE AD BONUS</small><strong id="adsBonusHour">0</strong><em>SC / hour</em></div>
-              <div><small>ESTIMATED TOTAL RATE</small><strong id="scEffectiveHour">0</strong><em>SC / hour</em></div>
-            </div>
-            <p class="hint">Ad rewards are credited immediately when watched. Time estimates spread the selected daily allowance across 24 hours, so actual timing may vary depending on when you watch today's ads and when the daily limit resets.</p>
+          <div class="ads-top"><div><strong>📺 Daily ad rewards</strong><small>Each ad gives 25 Service Coins instantly. Maximum 10 ads per day.</small></div><label class="switch"><input id="adsToggle" type="checkbox"><span></span></label></div>
+          <div class="ads-content">
+            <label class="ads-slider-label" for="adsPerDay">Ads watched per day: <strong><span id="adsPerDayValue">10</span>/10</strong></label>
+            <input id="adsPerDay" type="range" min="0" max="10" step="1" value="10" disabled>
+            <div class="ads-metrics"><div><small>DAILY AD BONUS</small><strong id="adsBonusDay">0</strong><em>SC / day</em></div></div>
+            <p class="ads-note">For purchase-time estimates, the selected ads are assumed to be watched now, so their Service Coins are credited immediately. If the target takes longer than a day, the same daily allowance is added again every 24 hours.</p>
           </div>
         </div>
-
-        <div class="section-label">YOUR CHEFS</div>
-        <div class="chef-grid" id="chefGrid"></div>
+        <div class="section-label">YOUR CHEFS</div><div class="chef-grid" id="chefGrid"></div>
       </div>
     </section>
     <section class="stats-grid">
@@ -60,10 +41,7 @@
       <article class="stat"><span>💵</span><div><small>VALUE</small><strong id="usdHour">$0</strong><em>/ hour</em></div></article>
     </section>
     <section class="two-col">
-      <div class="panel">
-        <div class="panel-title"><div><span class="icon">⏱</span><h2>TIME TO BUY A CHEF</h2></div></div>
-        <div class="table-wrap"><table><thead><tr><th>Chef</th><th>Cost</th><th>Gain</th><th>Time</th></tr></thead><tbody id="nextChefBody"></tbody></table></div>
-      </div>
+      <div class="panel"><div class="panel-title"><div><span class="icon">⏱</span><h2>TIME TO BUY A CHEF</h2></div></div><div class="table-wrap"><table><thead><tr><th>Chef</th><th>Cost</th><th>Gain</th><th>Time</th></tr></thead><tbody id="nextChefBody"></tbody></table></div></div>
       <div id="withdraw" class="panel">
         <div class="panel-title"><div><span class="icon">💵</span><h2>WITHDRAWAL CALCULATOR</h2></div></div>
         <div class="withdraw-input"><label>Target amount</label><div class="money-input"><span>$</span><input id="withdrawInput" type="number" min="1" step="1" value="1"></div></div>
@@ -71,30 +49,13 @@
         <div class="quick"><button data-amount="1">$1</button><button data-amount="5">$5</button><button data-amount="10">$10</button><button data-amount="100">$100</button></div>
       </div>
     </section>
-    <section class="panel planner">
-      <div class="panel-title"><div><span class="icon">🎯</span><h2>CHEF PURCHASE PLANNER</h2></div></div>
-      <div class="planner-body">
-        <p>Choose the chef you want to buy. The estimate includes your current resources, production, Azure reinvestment setting and ad bonus.</p>
-        <label for="targetChef">Chef to buy</label>
-        <select id="targetChef"></select>
-        <div class="planner-results">
-          <div><small>CHEF COST</small><strong id="plannerCost">—</strong></div>
-          <div><small>SC STILL NEEDED</small><strong id="plannerMissing">—</strong></div>
-          <div><small>ESTIMATED TIME</small><strong id="plannerTime">—</strong></div>
-          <div><small>AD PLAN</small><strong id="plannerAds">Ads disabled</strong></div>
-          <div><small>ESTIMATED DAYS</small><strong id="plannerDays">—</strong></div>
-        </div>
-      </div>
-    </section>
     <section id="about" class="panel faq">
       <div class="panel-title"><div><span class="icon">?</span><h2>HOW THE CALCULATOR WORKS</h2></div></div>
       <details open><summary>How are rewards calculated?</summary><p>Every 1,000 dishes sold gives 5 Service Coins and 5 Azure. 10,000 Azure equals $1.</p></details>
       <details><summary>How does Azure reinvestment work?</summary><p>When enabled, Azure is treated as reinvested into Service Coins at a 10% bonus: 1 Azure becomes 1.1 Service Coins. This is used when calculating the time to reach the next chef.</p></details>
-      <details><summary>How do ad rewards work?</summary><p>Each ad gives 25 Service Coins immediately, up to 10 ads (250 Service Coins) per day. The future-time estimate uses the daily ad bonus as an average hourly rate; the exact result depends on when ads are watched and when the daily limit resets.</p></details>
+      <details><summary>How do ad rewards work?</summary><p>Each ad gives 25 Service Coins instantly, up to 10 ads (250 Service Coins) per day. The calculator assumes the selected ads are watched immediately, and for longer estimates adds the same bonus again every 24 hours.</p></details>
     </section>
     <footer>ChefCalc is an independent community calculator. Game values can be changed in <code>data.js</code>.</footer>
   </main>
-  <script src="data.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+  <script src="data.js"></script><script src="app.js"></script>
+</body></html>
