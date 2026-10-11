@@ -76,3 +76,7 @@ th{color:#b8d2f5;background:#172333}td{border-bottom-color:#253449}
 .chef-card:focus-within{border-color:var(--blue)}
 .withdraw-result strong{color:#fff}.money-input span{color:var(--gold)}
 @media(max-width:480px){.brand-logo{width:34px;height:34px}.brand strong{font-size:14px}}
+
+/* Highlight the oven upgrade as a distinct purchase option in the timing table. */
+.oven-upgrade-row td{background:rgba(255,190,45,.07);border-top:1px solid rgba(255,190,45,.35)}
+.oven-upgrade-row .chef-name{color:#ffd15a}

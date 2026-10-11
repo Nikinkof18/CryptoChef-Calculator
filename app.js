@@ -58,7 +58,10 @@ function updateStats(){
   $("usdHour").textContent="$"+fmt(r.azure/GAME.azurePerDollar,5);$("adsBonusDay").textContent=fmt0(adBonus());
 }
 function renderTable(){
-  $("nextChefBody").innerHTML=GAME.chefs.map(c=>`<tr><td class="chef-name">${c.emoji} ${c.name}</td><td>${fmt0(c.cost)} SC</td><td class="good">+${fmt0(c.production)}/h</td><td>${timeTextFromMinutes(minutesForChef(c.cost))}</td></tr>`).join("");
+  const chefRows=GAME.chefs.map(c=>`<tr><td class="chef-name">${c.emoji} ${c.name}</td><td>${fmt0(c.cost)} SC</td><td class="good">+${fmt0(c.production)}/h</td><td>${timeTextFromMinutes(minutesForChef(c.cost))}</td></tr>`).join("");
+  const oven=GAME.oven;
+  const ovenRow=`<tr class="oven-upgrade-row"><td class="chef-name">♨️ Oven Tier 2</td><td>${fmt0(oven.upgradeCost)} SC</td><td class="good">4,000,000 dish storage</td><td>${timeTextFromMinutes(minutesForChef(oven.upgradeCost))}</td></tr>`;
+  $("nextChefBody").innerHTML=chefRows+ovenRow;
 }
 function updateWithdrawal(){
   const dollars=Math.max(0,Number($("withdrawInput").value)||0),required=dollars*GAME.azurePerDollar,r=rewardsPerHour().azure;
