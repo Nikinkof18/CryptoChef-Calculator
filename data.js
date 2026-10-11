@@ -7,6 +7,7 @@ const GAME = {
   azurePerDollar: 10000,
   serviceCoinsPerAd: 25,
   maxAdsPerDay: 10,
+  oven: { tier1Capacity: 2000000, tier2Capacity: 4000000, upgradeCost: 200000 },
   chefs: [
     { name: "Kitchen Porter", production: 42, cost: 1000, emoji: "🍽️" },
     { name: "Junior Chef", production: 221, cost: 5000, emoji: "🔪" },

@@ -1,7 +1,7 @@
 const $ = id => document.getElementById(id);
 const fmt = (n,d=2) => Number(n).toLocaleString("en-US",{maximumFractionDigits:d});
 const fmt0 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:0});
-const state = {counts:{},sc:0,azure:0,convert:true,adsEnabled:false,adsPerDay:10};
+const state = {counts:{},sc:0,azure:0,convert:true,adsEnabled:false,adsPerDay:10,ovenTier:1,ovenFilled:0};
 
 function save(){try{localStorage.setItem("chefcalc",JSON.stringify(state));}catch(e){}}
 function load(){
@@ -10,6 +10,9 @@ function load(){
   state.adsPerDay=Math.max(0,Math.min(GAME.maxAdsPerDay||10,Math.floor(Number(state.adsPerDay??10)||0)));
   $("scInput").value=Number(state.sc||0);$("azureInput").value=Number(state.azure||0);
   $("convertToggle").checked=state.convert!==false;$("adsToggle").checked=state.adsEnabled===true;
+  state.ovenTier=Number(state.ovenTier)===2?2:1;
+  state.ovenFilled=Math.max(0,Number(state.ovenFilled)||0);
+  $("ovenTier").value=String(state.ovenTier);$("ovenFilled").value=state.ovenFilled;
   $("adsPerDay").value=state.adsPerDay;$("adsPerDayValue").textContent=state.adsPerDay;$("adsPerDay").disabled=!state.adsEnabled;
 }
 function production(){return GAME.chefs.reduce((s,c)=>s+c.production*(state.counts[c.name]||0),0);}
@@ -62,13 +65,28 @@ function updateWithdrawal(){
   const hours=r>0?Math.max(0,(required-Math.max(0,state.azure))/r):Infinity;
   $("azureRequired").textContent=fmt0(required);$("withdrawTime").textContent=state.azure>=required?"Ready now":timeText(hours);
 }
+function updateOven(){
+  const capacity=state.ovenTier===2?GAME.oven.tier2Capacity:GAME.oven.tier1Capacity;
+  const remaining=Math.max(0,capacity-Math.min(capacity,state.ovenFilled));
+  const p=production();
+  $("ovenRemaining").textContent=fmt0(remaining);
+  $("ovenTime").textContent=remaining===0?"Full":p>0?timeText(remaining/p):"—";
+  $("ovenUpgrade").disabled=state.ovenTier===2;
+  $("ovenUpgrade").textContent=state.ovenTier===2?"Oven Tier 2 selected":"Upgrade to Tier 2 — "+fmt0(GAME.oven.upgradeCost)+" SC";
+}
 function update(){
   state.sc=Math.max(0,Number($("scInput").value)||0);state.azure=Math.max(0,Number($("azureInput").value)||0);
   state.convert=$("convertToggle").checked;state.adsEnabled=$("adsToggle").checked;
   state.adsPerDay=Math.max(0,Math.min(GAME.maxAdsPerDay||10,Math.floor(Number($("adsPerDay").value)||0)));
   $("adsPerDayValue").textContent=state.adsPerDay;$("adsPerDay").disabled=!state.adsEnabled;
-  updateStats();renderTable();updateWithdrawal();save();
+  state.ovenTier=Number($("ovenTier").value)===2?2:1;
+  state.ovenFilled=Math.max(0,Number($("ovenFilled").value)||0);
+  const maxCapacity=state.ovenTier===2?GAME.oven.tier2Capacity:GAME.oven.tier1Capacity;
+  state.ovenFilled=Math.min(state.ovenFilled,maxCapacity);
+  if(Number($("ovenFilled").value)!==state.ovenFilled)$("ovenFilled").value=state.ovenFilled;
+  updateStats();renderTable();updateWithdrawal();updateOven();save();
 }
-["scInput","azureInput","convertToggle","withdrawInput","adsToggle","adsPerDay"].forEach(id=>{ $(id).addEventListener("input",update);$(id).addEventListener("change",update);});
+["scInput","azureInput","convertToggle","withdrawInput","adsToggle","adsPerDay","ovenTier","ovenFilled"].forEach(id=>{ $(id).addEventListener("input",update);$(id).addEventListener("change",update);});
+$("ovenUpgrade").addEventListener("click",()=>{if(state.ovenTier===1){$("ovenTier").value="2";update();}});
 document.querySelectorAll(".quick button").forEach(b=>b.addEventListener("click",()=>{$("withdrawInput").value=b.dataset.amount;update();}));
 load();renderChefs();update();
