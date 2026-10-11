@@ -41,3 +41,38 @@ input[type=number],.money-input{width:100%;min-width:0;background:#111111;border
 .oven-result .capacity{text-align:right}.oven-upgrade{margin-top:12px;width:100%;padding:11px 14px;border:1px solid #666;border-radius:9px;background:#e5e5e5;color:#111;font-weight:800;cursor:pointer}
 .oven-upgrade:disabled{opacity:.45;cursor:not-allowed}.oven-note{font-size:10px;color:#a5a5a5;margin:10px 0 0}
 @media(max-width:480px){.oven-body{padding:12px}.oven-grid{grid-template-columns:1fr}.oven-result strong{font-size:17px}}
+
+
+/* Color refinement: keep the dark monochrome base, add clear interactive accents. */
+:root{--purple:#8057ff;--purple-light:#a58aff;--gold:#ffc629;--green:#20d878;--blue:#36c9ff;--border:#2b3b4e;--panel:#111923;--card:#172230;--muted:#a7b7ca}
+.topbar{background:linear-gradient(100deg,#080d14,#121d2a);border-bottom-color:#24364a}
+.brand{gap:11px}.brand-logo{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 2px 7px #ffc62930)}
+.brand strong{font-size:16px;letter-spacing:.1px}.brand .brand-accent{display:inline;color:var(--gold);font-size:inherit;font-weight:800}
+.hero-badge{background:#10251f;border-color:#24654c;color:#e5fff2}.hero-badge span{color:var(--green);text-shadow:0 0 9px #20d87899;font-size:12px}
+.eyebrow{color:var(--purple-light)}
+.panel-title{background:linear-gradient(100deg,#1a2635,#121b27);border-bottom-color:#2b3b4e}
+.icon{color:var(--blue)}
+.resource-strip>label>span{color:#b5d8ff}
+input[type=number]:focus,.oven-field select:focus,.oven-field input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 2px #36c9ff24}
+.switch span{background:#465366;border:1px solid #5a6a7d}.switch input:checked+span{background:var(--green);border-color:#43f39b;box-shadow:0 0 12px #20d87830}
+.reinvest-card .switch input:checked+span{background:var(--purple);border-color:var(--purple-light);box-shadow:0 0 12px #8057ff40}
+.ads-card{background:linear-gradient(115deg,#111b29,#151c2b);border-color:#33465f}
+.ads-top{background:linear-gradient(90deg,#1a2738,#171e2d);border-bottom-color:#304259}
+.ads-metrics>div{background:linear-gradient(120deg,#211c3b,#191b2b);border-color:#4b3b7d}
+.ads-metrics small{color:#b6a4ff}.ads-metrics strong,.ads-slider-label strong{color:#b49bff}
+#adsPerDay{accent-color:var(--purple)}
+.quick button{background:#202d3d;border-color:#3c5068;color:#f4f8ff;transition:background .15s,border-color .15s,transform .15s}
+.quick button:hover{background:#3b2a73;border-color:var(--purple-light);color:#fff;transform:translateY(-1px)}
+.quick button:focus-visible,.oven-upgrade:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.main-stat{border-color:#6443ad;background:linear-gradient(115deg,#251b43,#141b28)}
+.stat small{color:#b9d2f2}.good{color:#69c9ff}
+th{color:#b8d2f5;background:#172333}td{border-bottom-color:#253449}
+.oven-result{background:linear-gradient(110deg,#142435,#191e2b);border-color:#314960}
+.oven-result>div:first-child strong{color:var(--gold)}
+.oven-upgrade{background:linear-gradient(100deg,#ffd34e,#ffb81d);color:#211700;border:1px solid #ffe17d;box-shadow:0 4px 16px #ffc62918}
+.oven-upgrade:hover:not(:disabled){filter:brightness(1.07);transform:translateY(-1px)}
+.oven-upgrade:disabled{background:#273343;color:#9eafc3;border-color:#3a4a5d;box-shadow:none}
+.chef-card{background:linear-gradient(145deg,#192635,#121a25);border-color:#2b4055}
+.chef-card:focus-within{border-color:var(--blue)}
+.withdraw-result strong{color:#fff}.money-input span{color:var(--gold)}
+@media(max-width:480px){.brand-logo{width:34px;height:34px}.brand strong{font-size:14px}}

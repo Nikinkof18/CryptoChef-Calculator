@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="CryptoChef logo">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffdb52"/><stop offset="1" stop-color="#ff9d16"/></linearGradient><linearGradient id="hat" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#cdd9e6"/></linearGradient></defs>
+<rect x="3" y="3" width="90" height="90" rx="23" fill="#111c2a" stroke="url(#bg)" stroke-width="4"/>
+<path d="M21 42c-8-3-8-15 1-18-1-12 15-17 23-8 7-10 24-6 25 7 10 3 11 17 1 20v10H21z" fill="url(#hat)" stroke="#26364a" stroke-width="3" stroke-linejoin="round"/>
+<path d="M22 43h48v10H22z" fill="#dce6ef" stroke="#26364a" stroke-width="3"/>
+<path d="M28 55c3-9 12-13 20-13s17 4 20 13l-4 16H32z" fill="#f0b17c" stroke="#26364a" stroke-width="3"/>
+<path d="M32 58c5-5 11-4 15-1 5-4 12-4 17 1l-3 5H35z" fill="#292b31"/><circle cx="40" cy="56" r="2" fill="#17202b"/><circle cx="58" cy="56" r="2" fill="#17202b"/><path d="M42 65q7 6 14 0" fill="none" stroke="#8e3826" stroke-width="3" stroke-linecap="round"/>
+<path d="M32 74l16-5 16 5-5 13H37z" fill="#e8483e" stroke="#26364a" stroke-width="3"/><path d="M48 72l-5 8 5 7 5-7z" fill="#fff"/>
+<path d="M72 48l8 3-8 27-8-3z" fill="#a9bacd" stroke="#26364a" stroke-width="3"/><path d="M71 47l8 3 3-8-8-3z" fill="#dfe9f3" stroke="#26364a" stroke-width="3"/>
+</svg>
