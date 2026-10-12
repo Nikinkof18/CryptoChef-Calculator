@@ -5,7 +5,7 @@ const GAME = {
   azurePerReward: 5,
   azureToScBonus: 0.10,
   azurePerDollar: 10000,
-  serviceCoinsPerAd: 25,
+  serviceCoinsPerAd: 10,
   maxAdsPerDay: 10,
   oven: { tier1Capacity: 2000000, tier2Capacity: 4000000, upgradeCost: 200000 },
   chefs: [
