@@ -11,9 +11,14 @@
   <header class="topbar"><div class="brand"><img class="brand-logo" src="logo.svg" alt="CryptoChef logo"><div><strong>CryptoChef <span class="brand-accent">Calculator</span></strong><span>Independent community tool</span></div></div></header>
   <main>
     <section class="hero">
-      <div><div class="eyebrow">FREE COMMUNITY CALCULATOR</div><h1>Optimize your kitchen.</h1><p>Enter your chefs and current resources to calculate production, rewards, chef purchase times and oven fill time.</p></div>
+      <div><div class="eyebrow">FREE COMMUNITY CALCULATOR</div><h1>Optimize your kitchen.</h1><p>Enter your chefs, resources and farm settings to calculate net dish production, rewards, chef purchase times and oven fill time.</p></div>
       <div class="hero-badge"><span>●</span> Live calculations</div>
     </section>
+    <nav class="tab-nav" aria-label="Calculator sections">
+      <button class="tab-button active" type="button" data-tab="kitchenPage">🍳 My Kitchen</button>
+      <button class="tab-button" type="button" data-tab="farmPage">🌾 My Farm</button>
+    </nav>
+    <div id="kitchenPage" class="kitchen-page">
     <section id="calculator" class="panel">
       <div class="panel-title"><div><span class="icon">⚙</span><h2>MY KITCHEN</h2></div><span class="chevron">⌃</span></div>
       <div class="calculator-body">
@@ -23,7 +28,7 @@
           <div class="reinvest-card"><div><strong>Reinvest Azure</strong><small>Convert Azure into Service Coins at +10%.</small></div><label class="switch"><input id="convertToggle" type="checkbox" checked><span></span></label></div>
         </div>
         <div class="ads-card">
-          <div class="ads-top"><div><strong>📺 Daily ad rewards</strong><small>Each ad gives 25 Service Coins instantly. Maximum 10 ads per day.</small></div><label class="switch"><input id="adsToggle" type="checkbox"><span></span></label></div>
+          <div class="ads-top"><div><strong>📺 Daily ad rewards</strong><small>Each ad gives 10 Service Coins instantly. Maximum 10 ads per day (100 SC).</small></div><label class="switch"><input id="adsToggle" type="checkbox"><span></span></label></div>
           <div class="ads-content">
             <label class="ads-slider-label" for="adsPerDay">Ads watched per day: <strong><span id="adsPerDayValue">10</span>/10</strong></label>
             <input id="adsPerDay" type="range" min="0" max="10" step="1" value="10" disabled>
@@ -36,7 +41,7 @@
     </section>
     <section class="stats-grid">
       <article class="stat main-stat"><span>🍽️</span><div><small>TOTAL PRODUCTION</small><strong id="dishesHour">0</strong><em>dishes / hour</em></div></article>
-      <article class="stat"><span>◉</span><div><small>SERVICE COINS</small><strong id="scHour">0</strong><em>/ hour (production)</em></div></article>
+      <article class="stat"><span>◉</span><div><small>SERVICE COINS</small><strong id="scHour">0</strong><em>/ hour (kitchen + farm sales)</em></div></article>
       <article class="stat"><span>◈</span><div><small>AZURE</small><strong id="azureHour">0</strong><em>/ hour</em></div></article>
       <article class="stat"><span>💵</span><div><small>VALUE</small><strong id="usdHour">$0</strong><em>/ hour</em></div></article>
     </section>
@@ -53,7 +58,7 @@
       </div>
     </section>
     <section class="two-col">
-      <div class="panel"><div class="panel-title"><div><span class="icon">⏱</span><h2>TIME TO BUY A CHEF / UPGRADE AN OVEN</h2></div></div><div class="table-wrap"><table><thead><tr><th>Chef</th><th>Cost</th><th>Gain</th><th>Time to buy / upgrade</th></tr></thead><tbody id="nextChefBody"></tbody></table></div></div>
+      <div class="panel"><div class="panel-title"><div><span class="icon">⏱</span><h2>TIME TO BUY A CHEF / ANIMAL / UPGRADE AN OVEN</h2></div></div><div class="table-wrap"><table><thead><tr><th>Chef / Animal / Upgrade</th><th>Cost</th><th>Gain / production</th><th>Time to buy / upgrade</th></tr></thead><tbody id="nextChefBody"></tbody></table></div></div>
       <div id="withdraw" class="panel">
         <div class="panel-title"><div><span class="icon">💵</span><h2>WITHDRAWAL CALCULATOR</h2></div></div>
         <div class="withdraw-input"><label>Target amount</label><div class="money-input"><span>$</span><input id="withdrawInput" type="number" min="1" step="1" value="1"></div></div>
@@ -63,9 +68,33 @@
     </section>
     <section id="about" class="panel faq">
       <div class="panel-title"><div><span class="icon">?</span><h2>HOW THE CALCULATOR WORKS</h2></div></div>
-      <details open><summary>How are rewards calculated?</summary><p>Every 1,000 dishes produced gives 5 Service Coins and 5 Azure. 10,000 Azure equals $1.</p></details>
+      <details open><summary>How are rewards calculated?</summary><p>Every 1,000 dishes available to the kitchen gives 5 Service Coins and 5 Azure. Dishes used to feed farm animals are removed from kitchen production. 10,000 Azure equals $1.</p></details>
       <details><summary>How does Azure reinvestment work?</summary><p>When enabled, Azure is treated as reinvested into Service Coins at a 10% bonus: 1 Azure becomes 1.1 Service Coins. This is used when calculating the time to reach the next chef.</p></details>
-      <details><summary>How do ad rewards work?</summary><p>Each ad gives 25 Service Coins instantly, up to 10 ads (250 Service Coins) per day. The calculator assumes the selected ads are watched immediately, and for longer estimates adds the same bonus again every 24 hours.</p></details>
+      <details><summary>How do ad rewards work?</summary><p>Each ad gives 10 Service Coins instantly, up to 10 ads (100 Service Coins) per day. The calculator assumes the selected ads are watched immediately, and for longer estimates adds the same bonus again every 24 hours.</p></details>
+    </section>
+    </div><!-- /kitchenPage -->
+    <section id="farmPage" class="panel farm-page" hidden>
+      <div class="panel-title"><div><span class="icon">🌾</span><h2>MY FARM</h2></div></div>
+      <div class="farm-body">
+        <p class="hero p" style="margin:0 0 18px;color:var(--muted);font-size:12px">Simulate adult animals, their dish consumption and the products they generate. Adding animals does not deduct Service Coins.</p>
+        <div class="farm-settings">
+          <label class="farm-setting"><span>AVERAGE FEEDS PER ANIMAL / DAY</span><select id="feedsPerDay"><option value="1">1 feed / day</option><option value="1.5">1.5 feeds / day</option><option value="2">2 feeds / day</option><option value="2.5">2.5 feeds / day</option><option value="3">3 feeds / day</option></select><small>Average estimate; each feed uses dishes and produces one item after 8 hours.</small></label>
+          <div class="farm-setting"><span>AUTO-SELL PRODUCTS</span><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><strong id="autoSellStatus">Enabled</strong><label class="switch" aria-label="Automatically sell farm products"><input id="autoSellToggle" type="checkbox" checked><span></span></label></div><small>On: products are sold and add SC to your income. Off: products are kept in inventory and add no SC yet.</small></div>
+        </div>
+        <div class="section-label">YOUR ADULT ANIMALS</div>
+        <div class="animal-grid" id="animalGrid"></div>
+        <div class="stats-grid farm-stats-grid">
+          <article class="stat"><span>🍽️</span><div><small>DISHES USED / DAY</small><strong id="farmDishesDay">0</strong><em>Removed from kitchen production</em></div></article>
+          <article class="stat"><span>📦</span><div><small>PRODUCTS / DAY</small><strong id="farmProductsDay">0</strong><em>Items generated</em></div></article>
+          <article class="stat"><span>💰</span><div><small>SALES / DAY</small><strong id="farmSalesDay">0 SC</strong><em id="farmSaleStatus">Auto-sell enabled</em></div></article>
+          <article class="stat"><span>📈</span><div><small>FARM NET IMPACT</small><strong id="farmNetDay">0 SC</strong><em>Compared with using dishes in kitchen</em></div></article>
+        </div>
+        <div class="panel" style="margin-top:18px;margin-bottom:0">
+          <div class="panel-title"><div><span class="icon">📊</span><h2>DAILY FARM PRODUCTION</h2></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Animal</th><th>Adults</th><th>Dishes / feed</th><th>Feeds / day</th><th>Products / day</th><th>Potential sales / day</th></tr></thead><tbody id="farmTableBody"></tbody></table></div>
+        </div>
+        <div class="farm-explainer-body"><p><strong>How the combined economy works:</strong> farm feeding reduces the dishes available to generate kitchen rewards. If Auto-sell is enabled, product sales are added to Service Coin income and included in chef purchase-time estimates. If disabled, products are stored and their sales are not counted.</p><p>The animal counts are simulations only. Adding or removing animals does not change your SC balance.</p></div>
+      </div>
     </section>
     <footer>CryptoChef Calculator is an independent community calculator. Game values can be changed in <code>data.js</code>.</footer>
   </main>
