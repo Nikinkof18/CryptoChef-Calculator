@@ -47,8 +47,8 @@
     </section>
 <section class="two-col">
       <div class="panel"><div class="panel-title"><div><span class="icon">⏱</span><h2>TIME TO BUY A CHEF / ANIMAL / UPGRADE AN OVEN</h2></div></div><div class="table-wrap"><table><thead><tr><th>Chef / Animal / Upgrade</th><th>Cost</th><th>Production details</th><th>Time to buy / upgrade</th></tr></thead><tbody id="nextChefBody"></tbody></table></div></div>
-
-    <section id="oven" class="panel">
+      <div class="side-stack">
+        <section id="oven" class="panel">
       <div class="panel-title"><div><span class="icon">♨</span><h2>OVEN</h2></div></div>
       <div class="oven-body">
         <div class="oven-grid">
@@ -60,14 +60,15 @@
         <p class="oven-note">Estimate uses your current dishes/hour production. The upgrade cost is shown for reference and is not deducted from your balance.</p>
       </div>
     </section>
-      <div id="withdraw" class="panel">
+        <div id="withdraw" class="panel">
         <div class="panel-title"><div><span class="icon">💵</span><h2>WITHDRAWAL CALCULATOR</h2></div></div>
         <div class="withdraw-input"><label>Target amount</label><div class="money-input"><span>$</span><input id="withdrawInput" type="number" min="1" step="1" value="1"></div></div>
         <div class="withdraw-result"><div><span>Azure required</span><strong id="azureRequired">10,000</strong></div><div><span>Estimated time</span><strong id="withdrawTime">—</strong></div></div>
         <div class="quick"><button data-amount="1">$1</button><button data-amount="5">$5</button><button data-amount="10">$10</button><button data-amount="100">$100</button></div>
       </div>
+      </div>
     </section>
-    <section id="about" class="panel faq">
+<section id="about" class="panel faq">
       <div class="panel-title"><div><span class="icon">?</span><h2>HOW THE CALCULATOR WORKS</h2></div></div>
       <details open><summary>How are rewards calculated?</summary><p>Every 1,000 dishes available to the kitchen gives 5 Service Coins and 5 Azure. Dishes used to feed farm animals are removed from kitchen production. 10,000 Azure equals $1.</p></details>
       <details><summary>How does Azure reinvestment work?</summary><p>When enabled, Azure is treated as reinvested into Service Coins at a 10% bonus: 1 Azure becomes 1.1 Service Coins. This is used when calculating the time to reach the next chef.</p></details>

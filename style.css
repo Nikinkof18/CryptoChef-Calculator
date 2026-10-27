@@ -97,3 +97,12 @@ th{color:#b8d2f5;background:#172333}td{border-bottom-color:#253449}
 .chef-card .name{white-space:normal;overflow:visible;text-overflow:clip;min-height:34px}
 .table-entity-icon{width:24px;height:30px;object-fit:contain;vertical-align:middle;margin-right:5px}
 .chef-name{white-space:nowrap}
+
+/* Emoji-only icons; no external image assets required */
+.entity-emoji{display:inline-flex;align-items:center;justify-content:center;line-height:1;flex:0 0 auto}
+.chef-icon{width:27px;height:34px;margin-right:3px;font-size:23px}
+.animal-icon{width:30px;height:34px;margin-right:4px;font-size:25px}
+.table-entity-emoji{display:inline-block;width:24px;margin-right:5px;text-align:center;font-size:17px;vertical-align:middle}
+.side-stack{display:flex;flex-direction:column;gap:18px;min-width:0}
+.side-stack>.panel{margin:0}
+@media(max-width:850px){.two-col{grid-template-columns:1fr}.side-stack{width:100%}}

@@ -75,11 +75,11 @@ function timeTextFromMinutes(total){
 }
 function timeText(hours){return timeTextFromMinutes(hours*60);}
 function renderChefs(){
-  $("chefGrid").innerHTML=GAME.chefs.map((c,i)=>`<div class="chef-card"><div class="name"><img class="entity-icon chef-icon" src="${c.image}" alt=""> ${c.name}</div><small>${fmt(c.production,0)} dishes / hour • ${fmt0(c.cost)} SC</small><input type="number" min="0" step="1" value="${state.counts[c.name]||0}" data-chef="${i}" aria-label="${c.name} quantity"></div>`).join("");
+  $("chefGrid").innerHTML=GAME.chefs.map((c,i)=>`<div class="chef-card"><div class="name"><span class="entity-emoji chef-icon">${c.emoji}</span> ${c.name}</div><small>${fmt(c.production,0)} dishes / hour • ${fmt0(c.cost)} SC</small><input type="number" min="0" step="1" value="${state.counts[c.name]||0}" data-chef="${i}" aria-label="${c.name} quantity"></div>`).join("");
   document.querySelectorAll("[data-chef]").forEach(inp=>inp.addEventListener("input",e=>{const c=GAME.chefs[Number(e.target.dataset.chef)];state.counts[c.name]=Math.max(0,Math.floor(Number(e.target.value)||0));update();}));
 }
 function renderAnimals(){
-  $("animalGrid").innerHTML=GAME.animals.map((a,i)=>`<div class="animal-card"><div class="animal-title"><img class="entity-icon animal-icon" src="${a.image}" alt=""> ${a.name}</div><div class="animal-meta">${a.productEmoji} ${a.product} • ${fmt0(a.dishesPerFeed)} dishes/feed</div><label for="animal-${i}">ADULT ANIMALS</label><input id="animal-${i}" type="number" min="0" step="1" value="${state.animalCounts[a.name]||0}" data-animal="${i}" aria-label="Number of adult ${a.name}s"><div class="animal-sale">${fmt0(a.sellPrice)} SC per ${a.product.toLowerCase()}</div></div>`).join("");
+  $("animalGrid").innerHTML=GAME.animals.map((a,i)=>`<div class="animal-card"><div class="animal-title"><span class="entity-emoji animal-icon">${a.emoji}</span> ${a.name}</div><div class="animal-meta">${a.productEmoji} ${a.product} • ${fmt0(a.dishesPerFeed)} dishes/feed</div><label for="animal-${i}">ADULT ANIMALS</label><input id="animal-${i}" type="number" min="0" step="1" value="${state.animalCounts[a.name]||0}" data-animal="${i}" aria-label="Number of adult ${a.name}s"><div class="animal-sale">${fmt0(a.sellPrice)} SC per ${a.product.toLowerCase()}</div></div>`).join("");
   document.querySelectorAll("[data-animal]").forEach(inp=>inp.addEventListener("input",e=>{const a=GAME.animals[Number(e.target.dataset.animal)];state.animalCounts[a.name]=Math.max(0,Math.floor(Number(e.target.value)||0));update();}));
 }
 function updateFarm(){
@@ -90,7 +90,7 @@ function updateFarm(){
   $("farmSaleStatus").textContent=state.autoSell?"Auto-sell enabled":"Products kept in inventory";
   $("autoSellStatus").textContent=state.autoSell?"Enabled":"Disabled";
   $("farmNetDay").textContent=(f.netPerDay>=0?"+":"")+fmt(f.netPerDay)+" SC";
-  $("farmTableBody").innerHTML=f.rows.map(r=>`<tr><td class="chef-name"><img class="table-entity-icon" src="${r.animal.image}" alt=""> ${r.animal.name}</td><td>${fmt0(r.count)}</td><td>${fmt0(r.animal.dishesPerFeed)}</td><td>${fmt(r.feeds,1)}</td><td>${fmt(r.products,1)} ${r.animal.productEmoji}</td><td class="good">${fmt(r.sales)} SC</td></tr>`).join("");
+  $("farmTableBody").innerHTML=f.rows.map(r=>`<tr><td class="chef-name"><span class="table-entity-emoji">${r.animal.emoji}</span> ${r.animal.name}</td><td>${fmt0(r.count)}</td><td>${fmt0(r.animal.dishesPerFeed)}</td><td>${fmt(r.feeds,1)}</td><td>${fmt(r.products,1)} ${r.animal.productEmoji}</td><td class="good">${fmt(r.sales)} SC</td></tr>`).join("");
 }
 function updateStats(){
   const p=production(),r=rewardsPerHour();
@@ -100,8 +100,8 @@ function updateStats(){
   $("usdHour").textContent="$"+fmt(r.azure/GAME.azurePerDollar,5);$("adsBonusDay").textContent=fmt0(adBonus());
 }
 function renderTable(){
-  const chefRows=GAME.chefs.map(c=>`<tr><td class="chef-name"><img class="table-entity-icon" src="${c.image}" alt=""> ${c.name}</td><td>${fmt0(c.cost)} SC</td><td class="good">+${fmt0(c.production)} dishes/h</td><td>${timeTextFromMinutes(minutesForChef(c.cost))}</td></tr>`).join("");
-  const animalRows=GAME.animals.map(a=>`<tr><td class="chef-name"><img class="table-entity-icon" src="${a.image}" alt=""> ${a.name}</td><td>${fmt0(a.cost)} SC</td><td class="good">${fmt0(a.dishesPerFeed)} dishes consumed per feed<br><span class="good">Produces ${a.product.toLowerCase()} worth ${fmt0(a.sellPrice)} SC</span></td><td>${timeTextFromMinutes(minutesForChef(a.cost))}</td></tr>`).join("");
+  const chefRows=GAME.chefs.map(c=>`<tr><td class="chef-name"><span class="table-entity-emoji">${c.emoji}</span> ${c.name}</td><td>${fmt0(c.cost)} SC</td><td class="good">+${fmt0(c.production)} dishes/h</td><td>${timeTextFromMinutes(minutesForChef(c.cost))}</td></tr>`).join("");
+  const animalRows=GAME.animals.map(a=>`<tr><td class="chef-name"><span class="table-entity-emoji">${a.emoji}</span> ${a.name}</td><td>${fmt0(a.cost)} SC</td><td class="good">${fmt0(a.dishesPerFeed)} dishes consumed per feed<br><span class="good">Produces ${a.product.toLowerCase()} worth ${fmt0(a.sellPrice)} SC</span></td><td>${timeTextFromMinutes(minutesForChef(a.cost))}</td></tr>`).join("");
   const oven=GAME.oven;
   const ovenRow=`<tr class="oven-upgrade-row"><td class="chef-name">♨️ Oven Tier 2</td><td>${fmt0(oven.upgradeCost)} SC</td><td class="good">4,000,000 dish storage</td><td>${timeTextFromMinutes(minutesForChef(oven.upgradeCost))}</td></tr>`;
   $("nextChefBody").innerHTML=chefRows+animalRows+ovenRow;
